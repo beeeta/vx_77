@@ -95,8 +95,9 @@ def prepare_msg():
     pic_filename = pic_filenames[day_count]
     pic_uri = os.path.join(pic_dir, pic_filename)
     if day_count >= len(linecache.getlines(wordsfile_path)):
-        # 说完了所有的情话，还是没反应就放弃
-        return 'I quit...',None
+        # 说完了所有的情话，还是没反应就应该放弃
+        text, pic_uri = 'I quit...', None
+        config['common']['DAY_COUNT'] = '1'
     else:
         config['common']['DAY_COUNT'] = str(day_count + 1)
     config.write(open(os.path.join(_curdir, 'config.ini'), 'w',encoding='utf-8'))
